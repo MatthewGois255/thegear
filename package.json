@@ -1,0 +1,23 @@
+{
+  "name": "thegear",
+  "version": "1.0.0",
+  "description": "Desenvolvimento de um sistema desktop para gestão de ordens de serviços de uma luthieria",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatthewGois255/thegear.git"
+  },
+  "author": "Matheus Gois",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MatthewGois255/thegear/issues"
+  },
+  "homepage": "https://github.com/MatthewGois255/thegear#readme",
+  "devDependencies": {
+    "electron": "^34.2.0"
+  }
+}
