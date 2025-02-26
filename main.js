@@ -1,6 +1,8 @@
 console.log("Processo principal")
 
-const { app, BrowserWindow, nativeTheme, Menu } = require('electron')
+const { app, BrowserWindow, nativeTheme, Menu, ipcMain } = require('electron')
+
+const path = require('node:path')
 
 // Janela principal
 let win
@@ -12,13 +14,25 @@ const createWindow = () => {
     height: 720,
     //autoHideMenuBar: true,
     //minimizable: false,
-    resizable: false
+    resizable: false,
+
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
   })
 
   // menu personalizado
   Menu.setApplicationMenu(Menu.buildFromTemplate(template))
 
   win.loadFile('./src/views/index.html')
+
+  ipcMain.on('client-window', () => {
+    clientWindow()
+  })
+
+  ipcMain.on('os-window', () => {
+    osWindow()
+  })
 }
 
 function aboutWindow() {
@@ -37,6 +51,42 @@ function aboutWindow() {
     })
   }
   about.loadFile('./src/views/sobre.html')
+}
+
+let client
+function clientWindow() {
+  nativeTheme.themeSource = 'light'
+  const main = BrowserWindow.getFocusedWindow()
+  if (main) {
+    client = new BrowserWindow({
+      width: 1010,
+      height: 720,
+      // autoHideMenuBar: true,
+      resizable: false,
+      parent: main,
+      modal: true
+    })
+  }
+  client.loadFile('./src/views/cliente.html')
+  client.center()
+}
+
+let os
+function osWindow() {
+  nativeTheme.themeSource = 'light'
+  const main = BrowserWindow.getFocusedWindow()
+  if (main) {
+    os = new BrowserWindow({
+      width: 1010,
+      height: 720,
+      //autoHideMenuBar: true,
+      resizable: false,
+      parent: main,
+      modal: true
+    })
+  }
+  os.loadFile('./src/views/os.html')
+  os.center()
 }
 
 // Iniciar a aplicação
@@ -63,8 +113,8 @@ const template = [
   {
     label: 'Cadastro',
     submenu: [
-      { label: 'Clientes' },
-      { label: 'OS' },
+      { label: 'Clientes', click: () => clientWindow() },
+      { label: 'OS', click: () => osWindow() },
       { type: 'separator' },
       { label: 'Sair', click: () => app.quit(), accelarator: 'Alt+F4' },
     ]
