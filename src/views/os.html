@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,78 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
     <title>Ordem de Serviço</title>
 </head>
+
 <body>
     <div class="container">
-        <h1>OS</h1>
+        <form class="mt-2 row g-3" id="frmOS">
+            <!-- Pesquisar OS já feitas -->
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="searchOS" maxlength="30" spellcheck="false">
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-primary" id="btnRead" onclick="SearchOS()">Buscar</button>
+            </div>
+            <hr class="mt-4 border border-primary border -1">
+
+
+            <!-- Buscar Cliente cadastrado pelo nome -->
+            <div class="col-md-6">
+                <label for="search" class="form-label">Cliente</label>
+                <input type="text" class="form-control" id="search" maxlength="30" spellcheck="false">
+            </div>
+
+            
+             <div class="row mt-2 g-3">
+                <!-- Modelo -->
+                <div class="col-md-6">
+                    <label for="inputName" class="form-label">Modelo</label>
+                    <input type="text" class="form-control" id="inputNameClient" spellcheck="false" required maxlength="30">
+                </div>
+    
+                <!-- Número de Série -->
+                <div class="col-md-3">
+                    <label for="inputSerieNumber" class="form-label">Número de Série</label>
+                    <input type="text" class="form-control" id="inputSerieNumber" spellcheck="false" maxlength="15">
+                </div>
+    
+                <!-- Data -->
+                <div class="col-md-2">
+                    <label for="inputDate" class="form-label">Data</label>
+                    <input type="date" class="form-control" id="inputDate" spellcheck="false">
+                </div>
+             </div>
+            
+
+            <!-- Problema -->
+            <div class="col-md-12">
+                <label for="inputProblem" class="form-label">Problema</label>
+                <textarea class="form-control" id="textareaProblem" spellcheck="false" rows="2"
+                    style="resize: none;"></textarea>
+            </div>
+
+            <!-- Serviços -->
+            <div class="mt-2 row g-3">
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary" id="btnRegister" onclick="addService()">Adicionar
+                        serviço</button>
+                </div>
+            </div>
+
+            <!-- 
+            <div class="col-md-4">
+                <input type="text" class="form-control" spellcheck="false" maxlength="50">
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" spellcheck="false" maxlength="50">
+            </div>
+            -->
+            <div class="col-md-4">
+                <h3>Total</h3>
+                <div id="total"></div>
+            </div>
+        </form>
     </div>
     <script src="../public/js/bootstrap.min.js"></script>
 </body>
+
 </html>
