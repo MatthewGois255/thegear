@@ -12,54 +12,88 @@
 
 <body>
     <div class="container">
-        <form class="mt-2 row g-3" id="frmOS">
+        <form class="mt-1 row g-1" id="frmOS">
+
             <!-- Pesquisar OS já feitas -->
-            <div class="col-md-6">
-                <input type="text" class="form-control" id="searchOS" maxlength="30" spellcheck="false">
+
+            <div class="col-md-12">
+                <label for="searchOS" class="form-label">Pesquisar OS</label>
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="searchOS" maxlength="30" spellcheck="false">
+                    </div>
+                    <div class="col-md-5">
+                        <button type="button" class="btn btn-primary" id="btnRead" onclick="SearchOS()">Buscar</button>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <button type="button" class="btn btn-primary" id="btnRead" onclick="SearchOS()">Buscar</button>
-            </div>
-            <hr class="mt-4 border border-primary border -1">
+
+            <hr class="mt-4 border border-primary border">
 
 
             <!-- Buscar Cliente cadastrado pelo nome -->
-            <div class="col-md-6">
-                <label for="search" class="form-label">Cliente</label>
-                <input type="text" class="form-control" id="search" maxlength="30" spellcheck="false">
-            </div>
-
+             <div class="mt-0 row g-2">
+                <div class="col-md-6">
+                    <label for="inputClient" class="form-label">Cliente</label>
+                    <input type="text" class="form-control" id="inputClient" maxlength="30" spellcheck="false">
+                </div>
+                <div class="col-md-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-select" id="status">
+                        <option value="1">Em aberta</option>
+                        <option value="2">Pendente</option>
+                        <option value="3">Concluída</option>
+                        <option value="4">Cancelada</option>
+                    </select>
+                </div>
+             </div>
             
-             <div class="row mt-2 g-3">
+
+
+            <div class="row mt-2 g-1">
                 <!-- Modelo -->
                 <div class="col-md-6">
                     <label for="inputName" class="form-label">Modelo</label>
-                    <input type="text" class="form-control" id="inputNameClient" spellcheck="false" required maxlength="30">
+                    <input type="text" class="form-control" id="inputNameClient" spellcheck="false" required
+                        maxlength="30">
                 </div>
-    
+
                 <!-- Número de Série -->
                 <div class="col-md-3">
                     <label for="inputSerieNumber" class="form-label">Número de Série</label>
                     <input type="text" class="form-control" id="inputSerieNumber" spellcheck="false" maxlength="15">
                 </div>
-    
+
                 <!-- Data -->
                 <div class="col-md-2">
                     <label for="inputDate" class="form-label">Data</label>
                     <input type="date" class="form-control" id="inputDate" spellcheck="false">
                 </div>
-             </div>
-            
+            </div>
+
 
             <!-- Problema -->
             <div class="col-md-12">
-                <label for="inputProblem" class="form-label">Problema</label>
+                <label for="inputProblem" class="form-label">Problema relatado</label>
                 <textarea class="form-control" id="textareaProblem" spellcheck="false" rows="2"
                     style="resize: none;"></textarea>
             </div>
 
             <!-- Serviços -->
-            <div class="mt-2 row g-3">
+            <div class="mt-2 row g-1">
+                <div class="col-md-8">
+                    <div class="mt-1 row g-1" id="servicos">
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h3>Total</h3>
+                    <div id="total"></div>
+                </div>
+            </div>
+
+            <!-- Serviços -->
+            <div class="mt-2 row g-2">
                 <div class="col-md-4">
                     <button type="button" class="btn btn-primary" id="btnRegister" onclick="addService()">Adicionar
                         serviço</button>
@@ -74,13 +108,11 @@
                 <input type="text" class="form-control" spellcheck="false" maxlength="50">
             </div>
             -->
-            <div class="col-md-4">
-                <h3>Total</h3>
-                <div id="total"></div>
-            </div>
+
         </form>
     </div>
     <script src="../public/js/bootstrap.min.js"></script>
+    <script src="../public/js/script.js"></script>
 </body>
 
 </html>
