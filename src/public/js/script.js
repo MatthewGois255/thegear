@@ -18,10 +18,10 @@ function addService() {
     `
     <div class="mt-1 row g-2">
         <div class="col-md-9">
-            <input type="text" placeholder="Descrição do serviço" class="form-control" spellcheck="false" maxlength="30">
+            <input type="text" placeholder="Descrição do serviço" class="form-control form-control-sm" spellcheck="false" maxlength="30">
         </div>
         <div class="col-md-2">
-            <input type="number" placeholder="Preço" class="form-control" spellcheck="false" min="0.00" max="99999.99">
+            <input type="number" placeholder="Preço" class="form-control form-control-sm" spellcheck="false" min="0.00" max="99999.99">
         </div>
     </div>
     `
