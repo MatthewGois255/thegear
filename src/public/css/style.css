@@ -14,17 +14,20 @@
 }
 
 footer {
-    height: 35px;
+    height: 50px;
     width: 100%;
     background-color: rgb(0, 154, 222);
-    text-align: center;
     position: fixed;
     bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
 }
 
 footer p {
     color: white;
     padding: 5px;
+    font-size: 1.2em;
 }
 
 #btnReset {
@@ -34,4 +37,13 @@ footer p {
     border: none;
     cursor: pointer;
     margin-left: 10px;
+}
+
+#total {
+    display: flex;
+    flex-direction: row;
+}
+
+.label-total {
+    padding-right: 2px;
 }

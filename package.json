@@ -19,5 +19,9 @@
   "homepage": "https://github.com/MatthewGois255/thegear#readme",
   "devDependencies": {
     "electron": "^34.3.2"
+  },
+  "dependencies": {
+    "jspdf": "^3.0.1",
+    "mongoose": "^8.12.2"
   }
 }
