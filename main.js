@@ -182,29 +182,29 @@ ipcMain.on('os-window', () => {
 // ================ CRUD =====================
 
 ipcMain.on('new-client', async (event, client) => {
-  // talvez a mensagem apareça mesmo sem cadastrar, vou precisar transformar essa função em uma promise
-  
-  // se eu cadastrar com um cpf igual, mesmo assim ele envia a mensagem
 
-  let cadastrado = false
-  async function cadastrar() {
-    await cadastrarCliente(client)
-    cadastrado = true
-  }
-  cadastrar()
-  if (cadastrado = true) {
-    dialog.showMessageBox({
-      type: 'info',
-      title: 'Aviso',
-      message: 'Cliente adicionado com sucesso',
-      buttons: ['OK']
-    }).then((result) => {
-      if (result.response === 0) {
-        event.reply('reset-form')
-      }
+  cadastrarCliente(client)
+    .then((result) => {
+      dialog.showMessageBox({
+        type: 'info',
+        title: 'Aviso',
+        message: 'Cliente adicionado com sucesso',
+        buttons: ['OK']
+      }).then((result) => {
+        if (result.response === 0) {
+          event.reply('reset-form')
+        }
+      })
     })
-  }
-  
+    .catch((error) => {
+      if (error == 11000) {
+        console.log("erro de CPF")
+      } else {
+        console.log(error)
+      }
+    }
+    )
+
 })
 
 ipcMain.on('search-client', async (event, name) => {

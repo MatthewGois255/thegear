@@ -2,30 +2,35 @@ const clientModel = require('../src/models/Clientes.js')
 const osModel = require('../src/models/OS.js')
 
 async function cadastrarCliente(client) {
-    try {
-        const newClient = new clientModel({
-          nomeCliente: client.nameCli,
-          cpfCliente: client.cpfCli,
-          emailCliente: client.emailCli,
-          foneCliente: client.phoneCli,
-          cepCliente: client.cepCli,
-          logradouroCliente: client.addressCli,
-          numeroCliente: client.numberCli,
-          complementoCliente: client.complementCli,
-          bairroCliente: client.neighborhoodCli,
-          cidadeCliente: client.cityCli,
-          ufCliente: client.ufCli
+    return new Promise(async (resolve, reject) => {
+        new Promise((res, rej) => {
+            const newClient = new clientModel({
+                nomeCliente: client.nameCli,
+                cpfCliente: client.cpfCli,
+                emailCliente: client.emailCli,
+                foneCliente: client.phoneCli,
+                cepCliente: client.cepCli,
+                logradouroCliente: client.addressCli,
+                numeroCliente: client.numberCli,
+                complementoCliente: client.complementCli,
+                bairroCliente: client.neighborhoodCli,
+                cidadeCliente: client.cityCli,
+                ufCliente: client.ufCli
+            })
+            return res(newClient)
         })
-    
-        await newClient.save()
-        console.log("Cliente adicionado")
-      } catch (error) {
-        if (error.code = 11000) {
-          console.log(`Erro: O CPF ${client.cpfCli} já está cadastrado`)
-        } else {
-          console.log(error)
-        }
-      }
+            .then(async (novoCliente) => {
+                await novoCliente.save()
+                resolve(console.log("Cliente adicionado"))
+            })
+            .catch((error) => {
+                if (error.code = 11000) {
+                    return reject(error.code)
+                } else {
+                    return reject(console.log(error))
+                }
+            })
+    })
 }
 
 async function buscarClienteNome(nome) {
@@ -76,4 +81,4 @@ async function buscarClienteCpf(cpf) {
     }
 }
 
-module.exports = { cadastrarCliente, buscarClienteNome, cadastrarOs}
+module.exports = { cadastrarCliente, buscarClienteNome, cadastrarOs }
